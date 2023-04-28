@@ -4,10 +4,21 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    public static void main(String[] args) throws IOException {
+        Main m = new Main();
+        List<User> list = m.readFromFile();
+        for(User o : list){
+
+            System.out.println(o);
+        }
+
+    }
+
     public void writeToFile(List<User> list) {
         try {
             FileWriter fw = new FileWriter("data.txt", true);
@@ -23,13 +34,8 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
-        User u = new User("cao thi hong tham", 21, 10);
-        User u1 = new User("tran van khiem", 21, 10);
+    public List<User> readFromFile() {
         List<User> list = new ArrayList<>();
-        list.add(u);
-        list.add(u1);
-
         try {
             FileReader fr = new FileReader("data.txt");
             BufferedReader br = new BufferedReader(fr);
@@ -39,11 +45,19 @@ public class Main {
                 if (line == null) {
                     break;
                 }
+                String txt[] = line.split("\\s+");
+                String name = txt[0];
+                int age = Integer.parseInt(txt[1]);
+                double mark = Double.parseDouble(txt[2]);
+
+                list.add(new User(name, age, mark));
                 System.out.println(line);
             }
 
         } catch (Exception e) {
             // TODO: handle exception
         }
+        return list;
+
     }
 }

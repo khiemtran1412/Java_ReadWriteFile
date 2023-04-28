@@ -4,14 +4,18 @@ public class User {
     private String name;
     private int age;
     private double mark;
-
-
-    @Override
-    public String toString() {
-        return " " + name + " " + age + " " + mark;
+    
+    public User(String name, int age, double mark) {
+        this.name = name;
+        this.age = age;
+        this.mark = mark;
     }
-
-
+    
+    
+    public User(){
+        
+    }
+    
     public String getName() {
         return name;
     }
@@ -42,14 +46,10 @@ public class User {
     }
 
 
-    public User(String name, int age, double mark) {
-        this.name = name;
-        this.age = age;
-        this.mark = mark;
+
+    @Override
+    public String toString() {
+        return name + ";" + age + ";" + mark;
     }
 
-
-    public User(){
-        
-    }
 }
